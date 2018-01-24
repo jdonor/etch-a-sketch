@@ -1,0 +1,11 @@
+.square {
+    float: left;
+}
+
+.square.first {
+    clear: both;
+}
+
+#header {
+    margin-bottom: 20px;
+}

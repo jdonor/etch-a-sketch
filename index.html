@@ -8,6 +8,55 @@
     <link rel="stylesheet" type="text/css" media="screen" href="styles.css" />
 </head>
 <body>
-    
+    <div id="header">
+        <button onclick="regenerateGrid()">Regenerate Grid</button>
+    </div>
+
+    <div id="grid"></div>
+
+    <script>
+        const GRID_SIZE = 700;
+
+        function generateGrid(squaresPerSide = 16) {
+            const grid = document.querySelector("#grid");
+            grid.innerHTML = "";
+            const squareSize = Math.floor(GRID_SIZE / squaresPerSide);
+
+            for (let i = 0; i < squaresPerSide; i++) {
+                const firstSquare = createSquare(squareSize);
+                firstSquare.classList.add("first");
+                grid.appendChild(firstSquare);
+
+                for (let j = 0; j < squaresPerSide - 1; j++) {
+                    const square = createSquare(squareSize);
+                    grid.appendChild(square);
+                }
+            }
+        }
+
+        function createSquare(size) {
+            const square = document.createElement("div");
+            square.classList.add("square");
+            square.style.height = size + "px";
+            square.style.width = size + "px";
+
+            return square;
+        }
+
+        function regenerateGrid() {
+            let input = "";
+            while (!isInputValid(input)) {
+                input = prompt("How many squares per side?");
+            }
+
+            generateGrid(Number(input));
+        }
+
+        function isInputValid(input) {
+            return input ? !isNaN(input) : false;
+        }
+
+        generateGrid();
+    </script>
 </body>
 </html>
