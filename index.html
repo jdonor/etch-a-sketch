@@ -9,7 +9,7 @@
 </head>
 <body>
     <div id="header">
-        <button onclick="regenerateGrid()">Regenerate Grid</button>
+        <button onclick="regenerateGrid()">New Sketchpad</button>
     </div>
 
     <div id="grid"></div>
@@ -39,6 +39,7 @@
             square.classList.add("square");
             square.style.height = size + "px";
             square.style.width = size + "px";
+            square.addEventListener("mouseover", drawOnSquare);
 
             return square;
         }
@@ -54,6 +55,10 @@
 
         function isInputValid(input) {
             return input ? !isNaN(input) : false;
+        }
+
+        function drawOnSquare() {
+            this.classList.add("black");
         }
 
         generateGrid();
